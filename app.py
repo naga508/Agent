@@ -1,17 +1,25 @@
-
 import streamlit as st
 import pandas as pd
+import os
 from agent import build_engine
 
 st.set_page_config(page_title="Mini CFO Copilot", page_icon="📈", layout="centered")
 st.title("📈 Mini CFO Copilot")
 st.write("Ask finance questions from monthly CSVs. Try:")
-st.code("- What was June 2025 revenue vs budget in USD?\n- Show Gross Margin % trend for the last 3 months.\n- Break down Opex by category for June 2025.\n- What is our cash runway right now?")
+st.code(
+    "- What was June 2025 revenue vs budget in USD?\n"
+    "- Show Gross Margin % trend for the last 3 months.\n"
+    "- Break down Opex by category for June 2025.\n"
+    "- What is our cash runway right now?"
+)
 
-ACTUALS = "fixtures/actuals.csv"
-BUDGET  = "fixtures/budget.csv"
-FX      = "fixtures/fx.csv"
-CASH    = "fixtures/cash.csv"
+# Resolve fixture paths relative to repo root
+ROOT = os.path.dirname(os.path.abspath(__file__))
+FIX = os.path.join(ROOT, "fixtures")
+ACTUALS = os.path.join(FIX, "actuals.csv")
+BUDGET  = os.path.join(FIX, "budget.csv")
+FX      = os.path.join(FIX, "fx.csv")
+CASH    = os.path.join(FIX, "cash.csv")
 
 engine = build_engine(ACTUALS, BUDGET, FX, CASH)
 
