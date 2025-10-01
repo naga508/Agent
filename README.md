@@ -1,17 +1,18 @@
-
 # Mini CFO Copilot (FP&A)
 
 End-to-end mini agent that answers CFO-style questions from monthly CSVs and renders charts in Streamlit.
 
-## Run
+## Run Locally
 ```bash
 python -m venv .venv && source .venv/bin/activate  # on Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
+The app loads data from the CSV fixtures in `./fixtures` and returns numeric answers plus charts when appropriate.
+
 ## Data
-CSV files in `fixtures/` (already exported from your `data.xlsx` if provided):
+CSV files in `fixtures/` (already exported from the provided `data.xlsx`):
 - `fixtures/actuals.csv` — monthly actuals by entity/account
 - `fixtures/budget.csv`  — monthly budget by entity/account
 - `fixtures/fx.csv`      — currency exchange rates (`rate_to_usd`)
